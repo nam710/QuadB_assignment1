@@ -1,12 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import BottomNav from './src/navigation/bottomTabs';
+import HomeScreen from './src/screens/HomeScreen';
+import MovieDetailsScreen from './src/screens/MovieDetailsScreen';
+import MyStack from './src/navigation/appStack';
+import MoviesScreen from './src/screens/MoviesScreen';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <NavigationContainer style={styles.container}>
+      <MyStack/>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
 }
 
