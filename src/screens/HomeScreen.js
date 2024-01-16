@@ -2,8 +2,6 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import MovieRow from "../components/movieRow";
 import axios from "axios";
-import BottomNav from "../navigation/bottomTabs";
-import MoviesScreen from "./MoviesScreen";
 const baseUrl = "https://api.tvmaze.com/search/shows?q=";
 
 // // Passing configuration object to axios
