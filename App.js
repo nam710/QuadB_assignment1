@@ -6,11 +6,12 @@ import HomeScreen from './src/screens/HomeScreen';
 import MovieDetailsScreen from './src/screens/MovieDetailsScreen';
 import MyStack from './src/navigation/appStack';
 import MoviesScreen from './src/screens/MoviesScreen';
+import MainTabNavigator from './src/navigation/bottomTabs';
 
 export default function App() {
   return (
     <NavigationContainer style={styles.container}>
-      <MyStack/>
+      <MainTabNavigator/>
       <StatusBar style="auto" />
     </NavigationContainer>
   );
