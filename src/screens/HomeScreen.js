@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import MovieRow from "../components/movieRow";
 import axios from "axios";
+import AnimationScreen from "./SplashScreen";
 const baseUrl = "https://api.tvmaze.com/search/shows?q=";
 
 // // Passing configuration object to axios
@@ -11,7 +12,6 @@ const baseUrl = "https://api.tvmaze.com/search/shows?q=";
 //     url: `${baseUrl}all`,
 //   };
 //   const response = await axios(configurationObject);
-//   console.log(response.data);
 // };
 
 // Invoking get method to perform a GET request
@@ -22,27 +22,29 @@ const fetchData = async () => {
 };
 
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation, setLoaded}) => {
   const [movie, setMovie] = useState([]);
-
   useEffect(() => {
     const getData = async () => {
       MovieData = await fetchData();
       setMovie(MovieData);
+      setLoaded(true);
     };
     getData();
   }, []);
-
-  const handleOnPress = () => {
-
+ 
+  const handleOnPress = (event,data) => {
+    navigation.navigate("Details",data.item.show);
   }
 
   return (
     <View style={styles.container}>
       <FlatList
+        contentContainerStyle={styles.content}
         data={movie}
         keyExtractor={(data) => data.show.id}
-        renderItem={(data) => <MovieRow data={data} handleOnPress={handleOnPress}/>}
+        renderItem={(data) => <MovieRow data={data} handleOnPress={(event)=>handleOnPress(event,data)}/>
+        }
       />
       
     </View>
@@ -56,4 +58,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
+  content: {
+    backgroundColor: 'black',
+    padding: 4,
+    gap: 4,
+  }
 });

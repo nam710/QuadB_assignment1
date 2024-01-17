@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const Chips = ({chipTitle,chipColor,chipTextColor}) => {
+const Chips = ({chipTitle,chipColor,chipTextColor,chipFontSize}) => {
     const chipStyle = { 
         backgroundColor:chipColor || "lightblue",
         borderRadius:20,
         paddingHorizontal:10,
     }
     const chipTextStyle = {
-       fontSize:18,
+       fontSize:chipFontSize||18,
        color: chipTextColor || "black"
     }
   return (
@@ -20,13 +20,14 @@ const Chips = ({chipTitle,chipColor,chipTextColor}) => {
   )
 }
 
-export default Chips
+export default Chips;
 
 const styles = StyleSheet.create({
     chips:{
         backgroundColor:'red',
         borderRadius:20,
         paddingHorizontal:10,
-        
+        alignItems:'center',
+        justifyContent:'center'
     },  
 })

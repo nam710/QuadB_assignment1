@@ -7,16 +7,31 @@ import SearchScreen from '../screens/SearchScreen';
 
 const Tab = createBottomTabNavigator();
 
-const MainTabNavigator = () => {
+const MainTabNavigator = ({ setLoaded, animationFinished, setAnimationFinished }) => {
+  const display = !animationFinished ? 'none' : 'flex';
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions = {{tabBarStyle:{display:display}}}>
       <Tab.Screen
         name="Home"
-        component={MyStack}
+        children = {
+            (props) => < MyStack {
+              ...props
+            }
+            setLoaded = {
+              setLoaded
+            }
+            animationFinished = {
+              animationFinished
+            }
+            setAnimationFinished = {
+              setAnimationFinished
+            }
+            />}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
+          headerShown:false
         }}
       />
       <Tab.Screen
